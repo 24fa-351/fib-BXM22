@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-long long recursive_fib(int n) {
+unsigned long long recursive_fib(unsigned long long int n) {
    if (n == 1) //shifts the n back by 1 making #1 fib = 0
         return 0;
     else if (n == 2)
@@ -11,7 +11,7 @@ long long recursive_fib(int n) {
         return recursive_fib(n - 1) + recursive_fib(n - 2);
 }
 
-long long iterative_fib(int n) {
+unsigned long long iterative_fib(unsigned long long int n) {
     if (n == 1) return 0; //shifts the n back by 1
     if (n == 2) return 1;
     int a = 0, b = 1, c;
@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
       return 1;
    }
    //Get the arguments
-   int num1 = atoi(argv[1]);
+   unsigned int long long num1 = atoi(argv[1]);
    char mode = argv[2][0];
    char *filename = argv[3];
    //Read the file
@@ -44,8 +44,8 @@ int main(int argc, char *argv[]) {
    //get the string
    fgets(buffer, 100, file); 
    //convert the string to an integer
-   int num2 = atoi(buffer);
-   int fib = num1 + num2; 
+   unsigned long long int num2 = atoi(buffer);
+   unsigned long long int fib = num1 + num2; 
    //determine modes
    if (mode == 'r') {
       fib = recursive_fib(fib);
@@ -55,6 +55,6 @@ int main(int argc, char *argv[]) {
       printf("Error: Invalid mode\n");
       return 1;
    }
-   printf("%d", fib); //Result
+   printf("%llu", fib); //Result
    return 0;
 }
