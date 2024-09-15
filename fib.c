@@ -2,15 +2,21 @@
 #include <stdlib.h>
 #include <string.h>
 
-unsigned long long recursive_fib(unsigned long long int n) {
-   if (n == 1) //shifts the n back by 1 making #1 fib = 0
-        return 0;
-    else if (n == 2)
-        return 1;
-    else
-        return recursive_fib(n - 1) + recursive_fib(n - 2);
-}
 
+unsigned long long memo[10000];
+
+void fib_memo() {
+    for (int i = 0; i < 1000; i++) {memo[i] = -1;}
+}
+unsigned long long recursive_fib(unsigned long long n) {
+    if (n == 1) return 0;
+    if (n == 2) return 1;
+    if (memo[n] != -1) {
+        return memo[n];
+    }
+    memo[n] = recursive_fib(n - 1) + recursive_fib(n - 2);
+    return memo[n];
+}
 unsigned long long iterative_fib(unsigned long long int n) {
     if (n == 1) return 0; //shifts the n back by 1
     if (n == 2) return 1;
@@ -24,7 +30,7 @@ unsigned long long iterative_fib(unsigned long long int n) {
 }
 
 int main(int argc, char *argv[]) { 
-   //Check if the number of arguments is correct
+   fib_memo(); //initialize memo
    if (argc != 4) {  
       printf("Usage: %s <integer> <r|i> <filename>\n", argv[0]); 
       return 1;
